@@ -1,4 +1,4 @@
-﻿// LoopShield evaluation harness: runs the attack x defense matrix end to end.
+// ResiliLoop evaluation harness: runs the attack x defense matrix end to end.
 //
 // Prerequisites (left running): broker on 1884, the controller in Wokwi.
 // For each run it:
@@ -9,8 +9,8 @@
 //   3. starts the plant at the setpoint (warm start) for warmup+attack+recover,
 //   4. logs controller telemetry/stats next to the plant's ground truth.
 //
-//   LoopShield.Eval matrix [--trials 3] [--attacks bias,ramp] [--configs none,both]
-//   LoopShield.Eval single --attack bias --config both
+//   ResiliLoop.Eval matrix [--trials 3] [--attacks bias,ramp] [--configs none,both]
+//   ResiliLoop.Eval single --attack bias --config both
 //
 // Runs land in runs/<session>/<attack>__<config>__t<n>/ ; finished runs are
 // skipped, so an interrupted session resumes with the same --out.
@@ -20,7 +20,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using MQTTnet;
-using LoopShield.Shared;
+using ResiliLoop.Shared;
 
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
@@ -28,8 +28,8 @@ CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 var opt = EvalOptions.Parse(args);
 string root = FindRepoRoot();
 string Exe(string project, string name) => Path.Combine(root, project, "bin", "Debug", "net10.0", OperatingSystem.IsWindows() ? name + ".exe" : name);
-string attackerExe = Exe("attacker", "LoopShield.Attacker");
-string plantExe = Exe("plant", "LoopShield.Plant");
+string attackerExe = Exe("attacker", "ResiliLoop.Attacker");
+string plantExe = Exe("plant", "ResiliLoop.Plant");
 foreach (var exe in new[] { attackerExe, plantExe })
 {
     if (!File.Exists(exe)) Fail($"{exe} not found; run `dotnet build` first");
@@ -247,9 +247,9 @@ static string FindRepoRoot()
     foreach (var start in new[] { Directory.GetCurrentDirectory(), AppContext.BaseDirectory })
     {
         for (var d = new DirectoryInfo(start); d != null; d = d.Parent)
-            if (File.Exists(Path.Combine(d.FullName, "loopshield.slnx"))) return d.FullName;
+            if (File.Exists(Path.Combine(d.FullName, "resililoop.slnx"))) return d.FullName;
     }
-    Fail("cannot find the repo root (loopshield.slnx)");
+    Fail("cannot find the repo root (resililoop.slnx)");
     return "";
 }
 
@@ -331,8 +331,8 @@ record EvalOptions(string Command, int Trials, string[] Attacks, string[] Config
     {
         if (a.Length == 0 || a[0] is not ("matrix" or "single"))
         {
-            Console.Error.WriteLine("usage: LoopShield.Eval matrix [--trials N] [--attacks a,b] [--configs c,d] [--out DIR]");
-            Console.Error.WriteLine("       LoopShield.Eval single --attack ATTACK --config CONFIG [--out DIR]");
+            Console.Error.WriteLine("usage: ResiliLoop.Eval matrix [--trials N] [--attacks a,b] [--configs c,d] [--out DIR]");
+            Console.Error.WriteLine("       ResiliLoop.Eval single --attack ATTACK --config CONFIG [--out DIR]");
             Console.Error.WriteLine("attacks: none bias ramp replay forgery flood disturb   configs: none proto phys both");
             Console.Error.WriteLine("timing:  --warmup 30 --attack 120 --recover 30   detector: --k 0.05 --h 4 --no-mitigate");
             Environment.Exit(2);

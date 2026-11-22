@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace LoopShield.Shared;
+namespace ResiliLoop.Shared;
 
 /// <summary>Truncated HMAC-SHA256 used by the protocol layer. Key must match
 /// SG_HMAC_KEY in firmware/main/sg_config.h. The attacker never uses this.</summary>

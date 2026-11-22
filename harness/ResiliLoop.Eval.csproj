@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\shared\LoopShield.Shared.csproj" />
+    <ProjectReference Include="..\shared\ResiliLoop.Shared.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

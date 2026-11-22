@@ -1,6 +1,6 @@
 #pragma once
 /*
- * LoopShield wire format. Fixed 28 bytes, little-endian. Must stay in sync
+ * ResiliLoop wire format. Fixed 28 bytes, little-endian. Must stay in sync
  * with shared/SgMessage.cs.
  *
  *   off size field

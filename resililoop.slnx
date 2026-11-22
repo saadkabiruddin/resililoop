@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/attacker/">
+    <Project Path="attacker/ResiliLoop.Attacker.csproj" />
+  </Folder>
+  <Folder Name="/broker/">
+    <Project Path="broker/ResiliLoop.Broker.csproj" />
+  </Folder>
+  <Folder Name="/harness/">
+    <Project Path="harness/ResiliLoop.Eval.csproj" />
+  </Folder>
+  <Folder Name="/plant/">
+    <Project Path="plant/ResiliLoop.Plant.csproj" />
+  </Folder>
+  <Folder Name="/shared/">
+    <Project Path="shared/ResiliLoop.Shared.csproj" />
+  </Folder>
+</Solution>

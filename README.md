@@ -1,9 +1,9 @@
-﻿# LoopShield
+# ResiliLoop
 
 Layered sensor spoofing detection for a networked temperature controller, built
 with C, C#, MQTT, ESP-IDF/FreeRTOS, and Python.
 
-LoopShield combines message authentication and replay checks with a model-based
+ResiliLoop combines message authentication and replay checks with a model-based
 physics detector. An automated harness injects attacks, switches defenses, and
 compares controller telemetry with the room model's independent ground truth.
 The Windows workflow runs the firmware's portable C defense code in a local
@@ -217,11 +217,11 @@ Start the broker and host controller in separate terminals, then run the harness
 
 ```bash
 # Terminal 1
-./broker/bin/Debug/net10.0/LoopShield.Broker
+./broker/bin/Debug/net10.0/ResiliLoop.Broker
 # Terminal 2
-./firmware/test/hostctl/bin/Debug/net10.0/LoopShield.HostCtl
+./firmware/test/hostctl/bin/Debug/net10.0/ResiliLoop.HostCtl
 # Terminal 3
-./harness/bin/Debug/net10.0/LoopShield.Eval matrix --trials 1
+./harness/bin/Debug/net10.0/ResiliLoop.Eval matrix --trials 1
 ```
 
 The optional standalone C simulation is `make -C firmware/test sim`; the Windows

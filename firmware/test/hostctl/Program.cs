@@ -1,4 +1,4 @@
-﻿// Host stand-in for the ESP32 controller, for testing the pipeline (attacker,
+// Host stand-in for the ESP32 controller, for testing the pipeline (attacker,
 // plant, harness, analysis) without Wokwi.
 //
 // It runs the firmware's OWN protocol checks, detector and PI law (the C
@@ -7,7 +7,7 @@
 // numbers are host numbers and say nothing about the ESP32; never use them
 // in results.
 //
-//   make -C firmware/test hostlib && firmware/test/hostctl/bin/Debug/net10.0/LoopShield.HostCtl
+//   make -C firmware/test hostlib && firmware/test/hostctl/bin/Debug/net10.0/ResiliLoop.HostCtl
 using System.Buffers;
 using System.Diagnostics;
 using System.Globalization;
@@ -15,7 +15,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using MQTTnet;
-using LoopShield.Shared;
+using ResiliLoop.Shared;
 
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;

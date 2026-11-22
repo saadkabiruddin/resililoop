@@ -1,28 +1,28 @@
-# Attack × defense matrix
+# Attack ï¿½ defense matrix
 
 Session: `matrix-20261110-231635`
 
 > **Host stand-in controller data.** Detection and deviation reflect the real
 > defense code, but timing numbers are from the host, not the ESP32.
 
-Each cell: detection rate · mean time-to-detect · worst true-temperature
-deviation from the setpoint · false-positive rate (runs with a pre-attack alarm).
+Each cell: detection rate ï¿½ mean time-to-detect ï¿½ worst true-temperature
+deviation from the setpoint ï¿½ false-positive rate (runs with a pre-attack alarm).
 
 | Attack | No defense | Protocol | Physics | Both |
 |---|---|---|---|---|
-| No attack | FP 0% · dev 0.02°C | FP 0% · dev 0.02°C | FP 0% · dev 0.02°C | FP 0% · dev 0.02°C |
-| Bias | 0% · TTD – · dev 2.94°C · FP 0% | 100% · TTD 0.1 s · dev 0.29°C · FP 0% | 100% · TTD 0.2 s · dev 0.04°C · FP 0% | 100% · TTD 0.1 s · dev 0.18°C · FP 0% |
-| Slow ramp | 0% · TTD – · dev 1.12°C · FP 0% | 100% · TTD 0.1 s · dev 0.13°C · FP 0% | 100% · TTD 18.8 s · dev 0.13°C · FP 0% | 100% · TTD 0.2 s · dev 0.12°C · FP 0% |
-| Replay | 0% · TTD – · dev 8.41°C · FP 0% | 100% · TTD 0.2 s · dev 8.93°C · FP 0% | 0% · TTD – · dev 8.98°C · FP 0% | 100% · TTD 0.1 s · dev 9.00°C · FP 0% |
-| Forgery | 0% · TTD – · dev 11.24°C · FP 0% | 100% · TTD 0.1 s · dev 0.01°C · FP 0% | 100% · TTD 0.3 s · dev 0.06°C · FP 0% | 100% · TTD 0.1 s · dev 0.02°C · FP 0% |
-| Flooding | 0% · TTD – · dev 0.75°C · FP 0% | 100% · TTD 0.1 s · dev 0.02°C · FP 0% |  | 100% · TTD 0.0 s · dev 0.01°C · FP 0% |
-| Disturbance* | FP 0% · dev 0.80°C | FP 0% · dev 0.81°C | FP 100% · dev 9.03°C | FP 100% · dev 9.03°C |
+| No attack | FP 0% ï¿½ dev 0.02ï¿½C | FP 0% ï¿½ dev 0.02ï¿½C | FP 0% ï¿½ dev 0.02ï¿½C | FP 0% ï¿½ dev 0.02ï¿½C |
+| Bias | 0% ï¿½ TTD ï¿½ ï¿½ dev 2.94ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 0.1 s ï¿½ dev 0.29ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 0.2 s ï¿½ dev 0.04ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 0.1 s ï¿½ dev 0.18ï¿½C ï¿½ FP 0% |
+| Slow ramp | 0% ï¿½ TTD ï¿½ ï¿½ dev 1.12ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 0.1 s ï¿½ dev 0.13ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 18.8 s ï¿½ dev 0.13ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 0.2 s ï¿½ dev 0.12ï¿½C ï¿½ FP 0% |
+| Replay | 0% ï¿½ TTD ï¿½ ï¿½ dev 8.41ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 0.2 s ï¿½ dev 8.93ï¿½C ï¿½ FP 0% | 0% ï¿½ TTD ï¿½ ï¿½ dev 8.98ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 0.1 s ï¿½ dev 9.00ï¿½C ï¿½ FP 0% |
+| Forgery | 0% ï¿½ TTD ï¿½ ï¿½ dev 11.24ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 0.1 s ï¿½ dev 0.01ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 0.3 s ï¿½ dev 0.06ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 0.1 s ï¿½ dev 0.02ï¿½C ï¿½ FP 0% |
+| Flooding | 0% ï¿½ TTD ï¿½ ï¿½ dev 0.75ï¿½C ï¿½ FP 0% | 100% ï¿½ TTD 0.1 s ï¿½ dev 0.02ï¿½C ï¿½ FP 0% |  | 100% ï¿½ TTD 0.0 s ï¿½ dev 0.01ï¿½C ï¿½ FP 0% |
+| Disturbance* | FP 0% ï¿½ dev 0.80ï¿½C | FP 0% ï¿½ dev 0.81ï¿½C | FP 100% ï¿½ dev 9.03ï¿½C | FP 100% ï¿½ dev 9.03ï¿½C |
 
 \* Disturbance is not an attack: the ambient temperature really drops (a window opens). Any alarm there is a false positive.
 
 ## Real-time cost under each attack (mean over trials, attack window)
 
-| Attack | Config | ctl exec mean/max (µs) | ctl resp max (µs) | detector mean (µs) | proto check mean (µs/msg) | msgs/s | proto CPU % | deadline misses |
+| Attack | Config | ctl exec mean/max (ï¿½s) | ctl resp max (ï¿½s) | detector mean (ï¿½s) | proto check mean (ï¿½s/msg) | msgs/s | proto CPU % | deadline misses |
 |---|---|---|---|---|---|---|---|---|
 | No attack | No defense | 12.2 / 231 | 24003 | 1.0 | 26.9 | 7 | 0.02 | 0 |
 | No attack | Protocol | 12.8 / 263 | 26859 | 0.6 | 28.1 | 7 | 0.02 | 0 |

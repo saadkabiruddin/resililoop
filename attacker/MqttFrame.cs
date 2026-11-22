@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace LoopShield.Attacker;
+namespace ResiliLoop.Attacker;
 
 /// <summary>Minimal MQTT 3.1.1 framing: enough to read whole packets off a
 /// TCP stream, recognise PUBLISH, and build QoS 0 PUBLISH packets.</summary>

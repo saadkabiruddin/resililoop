@@ -1,4 +1,4 @@
-﻿// LoopShield attacker: an on-path man-in-the-middle on the controller's link.
+// ResiliLoop attacker: an on-path man-in-the-middle on the controller's link.
 //
 // The controller connects to port 1883 (this proxy), which forwards to the
 // real broker on 1884. That is the position an attacker gets on an
@@ -8,7 +8,7 @@
 // Outside the attack window it is a transparent relay, so every experiment,
 // attacked or not, goes through exactly the same network path.
 //
-//   LoopShield.Attacker --mode bias --start 30 --duration 120 [--bias -3]
+//   ResiliLoop.Attacker --mode bias --start 30 --duration 120 [--bias -3]
 //
 // Modes (all act on broker -> controller sg/sensor traffic):
 //   none     relay only
@@ -25,8 +25,8 @@ using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
-using LoopShield.Attacker;
-using LoopShield.Shared;
+using ResiliLoop.Attacker;
+using ResiliLoop.Shared;
 
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;

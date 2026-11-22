@@ -1,8 +1,8 @@
-﻿// Local MQTT broker for the LoopShield lab, on port 1884. The plant and the
+// Local MQTT broker for the ResiliLoop lab, on port 1884. The plant and the
 // harness connect here directly. The Wokwi ESP32 connects to port 1883,
 // which is the attacker's on-path proxy (see attacker/), which forwards here.
 using MQTTnet.Server;
-using LoopShield.Shared;
+using ResiliLoop.Shared;
 
 int port = args.Length > 0 && int.TryParse(args[0], out var p) ? p : Ports.Broker;
 

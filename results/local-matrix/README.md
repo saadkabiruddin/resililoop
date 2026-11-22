@@ -1,4 +1,4 @@
-﻿# Preliminary host evaluation snapshot
+# Preliminary host evaluation snapshot
 
 Source session: `matrix-20261110-231635`, started November 10, 2026.
 See `session.json` for the harness configuration.

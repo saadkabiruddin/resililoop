@@ -14,14 +14,14 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Native controller build failed (GCC is required)' }
     foreach ($port in 1883, 1884) {
         if (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) {
-            throw "Port $port is already in use. Stop the existing LoopShield processes before starting this launcher."
+            throw "Port $port is already in use. Stop the existing ResiliLoop processes before starting this launcher."
         }
     }
     $logDir = Join-Path $repo ('runs/local-services-' + (Get-Date -Format 'yyyyMMdd-HHmmss'))
     New-Item -ItemType Directory $logDir | Out-Null
     foreach ($service in @(
-        @{ Path = 'broker/bin/Debug/net10.0/LoopShield.Broker.exe'; Name = 'broker' },
-        @{ Path = 'firmware/test/hostctl/bin/Debug/net10.0/LoopShield.HostCtl.exe'; Name = 'controller' }
+        @{ Path = 'broker/bin/Debug/net10.0/ResiliLoop.Broker.exe'; Name = 'broker' },
+        @{ Path = 'firmware/test/hostctl/bin/Debug/net10.0/ResiliLoop.HostCtl.exe'; Name = 'controller' }
     )) {
         $children += Start-Process -FilePath (Join-Path $repo $service.Path) -WorkingDirectory $repo -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $logDir ($service.Name + '.log')) -RedirectStandardError (Join-Path $logDir ($service.Name + '.err.log'))
     }
@@ -33,7 +33,7 @@ try {
     Write-Host 'Timing is from this PC and must not be reported as ESP32 timing.'
     $evalArgs = $args
     if ($evalArgs.Count -eq 0) { $evalArgs = @('single', '--attack', 'bias', '--config', 'both', '--warmup', '3', '--attack-s', '10', '--recover', '3') }
-    & ./harness/bin/Debug/net10.0/LoopShield.Eval.exe @evalArgs
+    & ./harness/bin/Debug/net10.0/ResiliLoop.Eval.exe @evalArgs
     if ($LASTEXITCODE -ne 0) { throw 'Evaluation failed' }
 }
 finally {

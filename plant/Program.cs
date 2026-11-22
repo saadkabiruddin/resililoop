@@ -1,4 +1,4 @@
-﻿// LoopShield plant simulator: a single room with a heater.
+// ResiliLoop plant simulator: a single room with a heater.
 //
 //   dT/dt = ((T_amb - T) + K * u) / tau
 //
@@ -13,7 +13,7 @@ using System.Buffers;
 using System.Diagnostics;
 using System.Globalization;
 using MQTTnet;
-using LoopShield.Shared;
+using ResiliLoop.Shared;
 
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;

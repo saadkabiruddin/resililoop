@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 
-namespace LoopShield.Shared;
+namespace ResiliLoop.Shared;
 
 public enum SgMessageType : byte
 {
@@ -9,7 +9,7 @@ public enum SgMessageType : byte
 }
 
 /// <summary>
-/// LoopShield wire format: 28 bytes, little-endian. Mirrors firmware/main/sg_msg.h;
+/// ResiliLoop wire format: 28 bytes, little-endian. Mirrors firmware/main/sg_msg.h;
 /// change both together.
 /// </summary>
 public readonly record struct SgMessage(
