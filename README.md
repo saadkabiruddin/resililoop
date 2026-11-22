@@ -1,4 +1,4 @@
-# ResiliLoop
+# ResiliLoop: Dual-Layer Detection and Mitigation of Sensor Spoofing in Networked Controllers
 
 Layered sensor spoofing detection for a networked temperature controller, built
 with C, C#, MQTT, ESP-IDF/FreeRTOS, and Python.
